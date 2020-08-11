@@ -1,0 +1,11 @@
+.paper {
+  padding: 70px;
+}
+
+.playerWrapper {
+  overflow: hidden;
+}
+
+.player video {
+  display: block;
+}
