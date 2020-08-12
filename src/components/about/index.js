@@ -35,10 +35,6 @@ export default class About extends Component {
         offset: 0,
       })
       .onStepEnter((res) => {
-        {this.props.setState({
-          ...this.props.state,
-          inView: 'about',
-        })}
         if (res.direction === 'down') {
           {this.props.setState({
             ...this.props.state,

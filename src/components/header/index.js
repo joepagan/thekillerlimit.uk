@@ -16,6 +16,7 @@ import Drawer from '@material-ui/core/Drawer';
 import clsx from 'clsx';
 import ListItemText from '@material-ui/core/ListItemText';
 import Icon from './../icon';
+import Link from './../link';
 import Grid from "@material-ui/core/Grid";
 
 import * as Scroll from "react-scroll";
@@ -64,6 +65,7 @@ export default class ButtonAppBar extends Component {
 
     const wantedIcons = ['presspack', 'twitter', 'facebook', 'soundcloud', 'youtube', 'patreon'];
     const headerIcons = props.icons.filter((icon) => wantedIcons.indexOf(icon.id) != -1);
+    const links = ['About', 'Media', 'Profiles', 'Shows'];
 
     const list = (anchor) => (
       <div
@@ -90,32 +92,25 @@ export default class ButtonAppBar extends Component {
             <Grid container justify="center">
               <Grid item xs={10}>
               <Toolbar>
-                <ScrollLink className={style.scrollLink} to="top" spy={true} smooth="easeOutQuint" duration={500}>
+                <ScrollLink
+                  to="app"
+                  className={style.scrollLink}
+                  spy={true}
+                  smooth="easeOutQuint"
+                  duration={300}
+                >
                   <Typography variant="h6" component="h1" color="primary" className={`${style.siteName} ${style.text}`}>
                     The Killer Limit
                   </Typography>
                 </ScrollLink>
                 <List className={classes.list}>
-                  <ListItem className={classes.listItem}>
-                    <ScrollLink className={`${style.scrollLink} ${style.navLink}`} to="about" spy={true} smooth="easeOutQuint" duration={500} >
-                      <Typography variant="button" color="primary" className={`${style.text} ${this.props.inView === 'about' ? style.inView : ''}`}>About</Typography>
-                    </ScrollLink>
-                  </ListItem>
-                  <ListItem className={classes.listItem}>
-                    <ScrollLink className={`${style.scrollLink} ${style.navLink}`} to="media" spy={true} smooth="easeOutQuint" duration={500}>
-                      <Typography variant="button" color="primary" className={style.text}>Media</Typography>
-                    </ScrollLink>
-                  </ListItem>
-                  <ListItem className={classes.listItem}>
-                    <ScrollLink className={`${style.scrollLink} ${style.navLink}`} to="profiles" spy={true} smooth="easeOutQuint" duration={500}>
-                      <Typography variant="button" color="primary" className={style.text}>Profiles</Typography>
-                    </ScrollLink>
-                  </ListItem>
-                  <ListItem className={classes.listItem}>
-                    <ScrollLink className={`${style.scrollLink} ${style.navLink}`} to="shows" spy={true} smooth="easeOutQuint" duration={500}>
-                      <Typography variant="button" color="primary" className={style.text}>Shows</Typography>
-                    </ScrollLink>
-                  </ListItem>
+                  {links.map((link) => (
+                    <Link
+                      class={classes.listItem}
+                      text={link}
+                      textClass={style.text}
+                    />
+                  ))}
                 </List>
 
                 <List className={classes.socialList}>
