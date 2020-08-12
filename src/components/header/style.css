@@ -62,3 +62,7 @@
   flex-shrink: 0;
   -moz-user-select: none;
 }
+
+.inView {
+  color: white;
+}
