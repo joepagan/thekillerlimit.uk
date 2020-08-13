@@ -94,7 +94,7 @@ export default class ButtonAppBar extends Component {
               <Toolbar>
                 <ScrollLink
                   to="app"
-                  className={style.scrollLink}
+                  className={`${style.scrollLink} ${style.navLink}`}
                   spy={true}
                   smooth="easeOutQuint"
                   duration={300}
