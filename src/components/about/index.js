@@ -1,3 +1,4 @@
+import style from './style';
 import { h, Component } from 'preact';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
@@ -54,13 +55,13 @@ export default class About extends Component {
         <div id="about" className={classes.section}>
           <div className={classes.container}>
             <Container maxWidth="lg">
-              <Grid container spacing={10}>
+              <Grid container>
                 <Grid item xs={12}>
-                  <Paper className={classes.paper} elevation={3} align="center">
-                    <Grid item xs={8}>
+                  <Paper className={`${classes.paper} ${style.paper}`} elevation={3} align="center">
+                    <Grid item md={8}>
                       <Typography variant="h2" component="h1" gutterBottom>The Killer Limit!</Typography>
                       <Typography variant="body1" gutterBottom>
-                        The Killer Limit ( formerly known as Impyus ) have been making noise for 5 years.
+                        The Killer Limit ( formerly known as Impyus & Killer Mantis ) have been making noise for 5 years.
                         <br />
                         The 6 boys from Yorkshire have been rocking the stages of the North since they joined forces.
                       </Typography>

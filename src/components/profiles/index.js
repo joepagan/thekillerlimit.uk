@@ -1,4 +1,4 @@
-import style from './style.css';
+import style from './style';
 import Profile from '../profile';
 
 import { h } from 'preact';
@@ -51,7 +51,7 @@ const Profiles = () => (
               <Typography variant="h2" component="h2" align="center" gutterBottom>Profiles</Typography>
               <Grid container spacing={3}>
                 {members.map((member) => (
-                  <Grid item xs={4}>
+                  <Grid item md={4} sm={4} xs={12}>
                     <Profile name={member.name} id={member.id} role={member.role} />
                   </Grid>
                 ))}

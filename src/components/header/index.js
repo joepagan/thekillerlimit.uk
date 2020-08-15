@@ -12,19 +12,15 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 
 import Drawer from '@material-ui/core/Drawer';
-import clsx from 'clsx';
 import Icon from './../icon';
 import Link from './../link';
 import Grid from "@material-ui/core/Grid";
 
 import * as Scroll from "react-scroll";
+import { Divider } from '@material-ui/core';
 const ScrollLink = Scroll.Link;
 
 const useStyles = makeStyles(() => ({
-  list: {
-    padding: 0,
-    display: 'flex',
-  },
   listItem: {
     padding: 0,
   },
@@ -67,12 +63,12 @@ export default class ButtonAppBar extends Component {
 
     const list = (anchor) => (
       <div
-        className={classes.list}
+        className={style.drawerLists}
         role="presentation"
         onClick={toggleDrawer(anchor, false)}
         onKeyDown={toggleDrawer(anchor, false)}
       >
-        <List>
+        <List className={style.drawerList}>
           {links.map((link) => (
             <Link
               class={classes.listItem}
@@ -82,6 +78,9 @@ export default class ButtonAppBar extends Component {
               drawer={toggleDrawer(anchor, false)}
             />
           ))}
+        </List>
+        <Divider />
+        <List className={style.drawerList}>
           {props.icons.map((icon) => (
             <Icon id={icon.id} title={icon.title} href={icon.href} text={icon.text} navLink={style.navLink} />
           ))}

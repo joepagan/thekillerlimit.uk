@@ -67,8 +67,27 @@
   color: #27ffa9 !important;
 }
 
+.list {
+  padding: 0;
+  display: flex;
+}
+
+.drawerLists {
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
 .drawer .navLinkActive .text {
   color: white !important;
+}
+
+.drawerList {
+  width: 250px;
+}
+
+.drawerList a {
+  width: 100%;
 }
 
 .menuButtonWrapper .navLinkActive .text {

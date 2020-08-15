@@ -1,4 +1,11 @@
 .paper {
   background-color: #eee;
   padding: 70px;
+  overflow: scroll;
+}
+
+@media (max-width: 500px) {
+  .paper {
+    padding: 0px;
+  }
 }
