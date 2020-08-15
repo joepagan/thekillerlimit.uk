@@ -18,22 +18,24 @@ export default class About extends Component {
                 <Paper className={style.paper} elevation={3} square align="center">
                   <Typography variant="h2" component="h2" align="center" gutterBottom>Shows</Typography>
                   <div className="c-shows">
-                    <a
-                      className="bit-widget-initializer"
-                      data-artist-name="Impyus"
-                      data-display-local-dates="false"
-                      data-display-past-dates="true"
-                      data-auto-style="false"
-                      data-text-color="#212121"
-                      data-link-color="#ff277c"
-                      data-background-color="rgba(0,0,0,0)"
-                      data-display-limit=""
-                      data-display-start-time="true"
-                      data-link-text-color="#fff"
-                      data-display-lineup="true"
-                      data-display-play-my-city="true"
-                      data-separator-color="rgba(0, 0, 0, 0.1)"
-                    a></a>
+                  <a className="bit-widget-initializer"
+                    data-artist-name="Impyus"
+                    data-display-past-dates="false"
+                    data-text-color="#212121"
+                    data-link-color="#ff277c"
+                    data-background-color="#ffffff"
+                    data-display-details="false"
+                    data-popup-background-color="#ffffff"
+                    data-link-text-color="#FFFFFF"
+                    data-separator-color="#CBCBCB"
+                    data-language="en"
+                    data-font="Helvetica"
+                    data-display-local-dates="false"
+                    data-auto-style="false"
+                    data-display-lineup="false"
+                    data-display-play-my-city="true"
+                    data-display-limit="15"
+                    data-display-start-time="false" ></a>
                   </div>
                 </Paper>
               </Grid>

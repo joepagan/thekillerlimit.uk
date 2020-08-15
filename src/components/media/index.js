@@ -15,8 +15,6 @@ const useStyles = makeStyles(() => ({
 }));
 
 export default class Media extends Component {
-  componentDidMount() {
-  }
   render() {
     const classes = useStyles();
     return (
