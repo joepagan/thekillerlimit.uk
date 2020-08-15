@@ -13,10 +13,11 @@ export default function Link(props) {
       <ScrollLink
         to={props.text.toLowerCase()}
         className={`${style.scrollLink} ${style.navLink}`}
-        activeClass={style.navLinkActive}
+        activeClass={props.navLinkActive}
         spy={true}
         smooth="easeOutQuint"
         duration={300}
+        onClick={props.drawer !== null ? props.drawer : null}
       >
         <Typography
           variant="button"

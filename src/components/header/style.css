@@ -29,9 +29,18 @@
   box-shadow: none;
 }
 
+@media (max-width: 1220px) {
+.list {
+    display: none !important;
+  }
+}
+.siteNameLink{
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
 .siteName {
   letter-spacing: .25em !important;
-  padding: 8px 16px;
+  padding: 8px 0;
 }
 
 .scrollLink {
@@ -58,8 +67,12 @@
   color: #27ffa9 !important;
 }
 
-.navLinkActive .text {
+.drawer .navLinkActive .text {
   color: white !important;
+}
+
+.menuButtonWrapper .navLinkActive .text {
+  color: inherit !important;
 }
 
 .nav.isActive .navLink,

@@ -7,14 +7,12 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import List from "@material-ui/core/List";
-import ListItem from "@material-ui/core/ListItem";
 
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 
 import Drawer from '@material-ui/core/Drawer';
 import clsx from 'clsx';
-import ListItemText from '@material-ui/core/ListItemText';
 import Icon from './../icon';
 import Link from './../link';
 import Grid from "@material-ui/core/Grid";
@@ -40,7 +38,7 @@ const useStyles = makeStyles(() => ({
   },
   menuButtonWrapper: {
     marginLeft: 'auto',
-    "@media (min-width: 767px)": {
+    "@media (min-width: 1220px)": {
       display: "none"
     },
   },
@@ -77,10 +75,17 @@ export default class ButtonAppBar extends Component {
         onKeyDown={toggleDrawer(anchor, false)}
       >
         <List>
-          {['All mail'].map((text) => (
-            <ListItem button key={text}>
-              <ListItemText primary={text} />
-            </ListItem>
+          {links.map((link) => (
+            <Link
+              class={classes.listItem}
+              text={link}
+              activeClass={style.navLinkActive}
+              textClass={style.text}
+              drawer={toggleDrawer(anchor, false)}
+            />
+          ))}
+          {props.icons.map((icon) => (
+            <Icon id={icon.id} title={icon.title} href={icon.href} text={icon.text} navLink={style.navLink} />
           ))}
         </List>
       </div>
@@ -94,7 +99,7 @@ export default class ButtonAppBar extends Component {
               <Toolbar>
                 <ScrollLink
                   to="app"
-                  className={`${style.scrollLink} ${style.navLink}`}
+                  className={`${style.scrollLink} ${style.navLink} ${style.siteNameLink}`}
                   spy={true}
                   smooth="easeOutQuint"
                   duration={300}
@@ -103,7 +108,7 @@ export default class ButtonAppBar extends Component {
                     The Killer Limit
                   </Typography>
                 </ScrollLink>
-                <List className={classes.list}>
+                <List className={`${classes.list} ${style.list}`}>
                   {links.map((link) => (
                     <Link
                       class={classes.listItem}
@@ -113,22 +118,24 @@ export default class ButtonAppBar extends Component {
                   ))}
                 </List>
 
-                <List className={classes.socialList}>
+                <List className={`${classes.socialList} ${style.list}`}>
                   {headerIcons.map((icon) => (
                     <Icon id={icon.id} title={icon.title} href={icon.href} text={icon.text} navLink={style.navLink} />
                   ))}
                 </List>
 
-                <div className={classes.menuButtonWrapper}>
+                <div className={`${classes.menuButtonWrapper} ${style.menuButtonWrapper}`}>
                   {['right'].map((anchor) => (
                     <Fragment key={anchor}>
                       <IconButton edge="start"
                         onClick={toggleDrawer(anchor, true)}
-                        color="inherit" aria-label="menu"
+                        color="primary"
+                        aria-label="menu"
+                        className={style.navLink}
                       >
                         <MenuIcon />
                       </IconButton>
-                      <Drawer anchor={anchor} open={state[anchor]} onClose={toggleDrawer(anchor, false)}>
+                      <Drawer anchor={anchor} open={state[anchor]} className={style.drawer} onClose={toggleDrawer(anchor, false)}>
                         {list(anchor)}
                       </Drawer>
                     </Fragment>
