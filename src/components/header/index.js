@@ -67,9 +67,7 @@ export default class ButtonAppBar extends Component {
 
     const list = (anchor) => (
       <div
-        className={clsx(classes.list, {
-          [classes.fullList]: anchor === 'top' || anchor === 'bottom',
-        })}
+        className={classes.list}
         role="presentation"
         onClick={toggleDrawer(anchor, false)}
         onKeyDown={toggleDrawer(anchor, false)}
