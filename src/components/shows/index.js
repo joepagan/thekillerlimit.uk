@@ -8,12 +8,6 @@ import style from './style';
 import LazyLoad from 'react-lazyload';
 
 export default class About extends Component {
-  componentDidMount() {
-    const script = document.createElement("script");
-    script.src = "https://widget.bandsintown.com/main.min.js";
-    script.async = true;
-    document.body.appendChild(script);
-  }
   render() {
     return (
       <LazyLoad once height={200} placeholder={<div id="shows" />}>

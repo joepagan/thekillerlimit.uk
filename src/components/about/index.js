@@ -24,10 +24,6 @@ import LazyLoad from 'react-lazyload';
 
 export default class About extends Component {
   componentDidMount() {
-    const script = document.createElement("script");
-    script.src = "https://c6.patreon.com/becomePatronButton.bundle.js";
-    script.async = true;
-    document.body.appendChild(script);
     const scroller = scrollama();
     scroller
       .setup({
