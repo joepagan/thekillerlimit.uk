@@ -8,9 +8,11 @@ import style from './style';
 
 export default class About extends Component {
   componentDidMount() {
-    const script = document.createElement("script");
-    script.src = "https://widget.bandsintown.com/main.min.js";
-    document.body.appendChild(script);
+    setTimeout(() => {
+      const script = document.createElement("script");
+      script.src = "https://widget.bandsintown.com/main.min.js";
+      document.body.appendChild(script);
+    }, 1000);
   }
   render() {
     return (
@@ -38,7 +40,7 @@ export default class About extends Component {
                   data-display-lineup="false"
                   data-display-play-my-city="true"
                   data-display-limit="15"
-                  data-display-start-time="false"></a>
+                  data-display-start-time="false" />
                 </div>
               </Paper>
             </Grid>
