@@ -8,9 +8,9 @@ import style from './style';
 
 export default class About extends Component {
   componentDidMount() {
-    const script = document.createElement("script");
-    script.src = "https://widget.bandsintown.com/main.min.js";
-    document.body.appendChild(script);
+    // const script = document.createElement("script");
+    // script.src = "https://widget.bandsintown.com/main.min.js";
+    // document.body.appendChild(script);
   }
   render() {
     return (
