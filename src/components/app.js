@@ -48,6 +48,9 @@ const theme = createMuiTheme({
    },
    h2: {
     fontFamily: `"Bebas Neue", "Rubik", "Helvetica", "Arial", sans-serif`,
+    '@media (max-width: 767px)': {
+      fontSize: '2.5rem',
+    },
    },
    h3: {
     fontFamily: `"Bebas Neue", "Rubik", "Helvetica", "Arial", sans-serif`,
@@ -65,6 +68,10 @@ const theme = createMuiTheme({
      lineHeight: 2,
      fontSize: 19,
      fontFamily: '"Rubik", "Helvetica", "Arial", sans-serif',
+     '@media (max-width: 767px)': {
+        fontSize: 16,
+        lineHeight: 1.4,
+      },
     },
     button: {
       fontFamily: '"Rubik", "Helvetica", "Arial", sans-serif',
