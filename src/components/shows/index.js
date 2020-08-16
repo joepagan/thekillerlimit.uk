@@ -12,7 +12,7 @@ export default class About extends Component {
       const script = document.createElement("script");
       script.src = "https://widget.bandsintown.com/main.min.js";
       document.body.appendChild(script);
-    }, 1000);
+    }, 5000);
   }
   render() {
     return (
