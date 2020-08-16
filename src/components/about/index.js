@@ -24,10 +24,6 @@ import scrollama from "scrollama";
 
 export default class About extends Component {
   componentDidMount() {
-    const script = document.createElement("script");
-    script.src = "https://c6.patreon.com/becomePatronButton.bundle.js";
-    script.async = true;
-    document.body.appendChild(script);
     const scroller = scrollama();
     scroller
       .setup({
@@ -84,12 +80,21 @@ export default class About extends Component {
                       You can support us right now on Patreon!
                     </Typography>
                     <a
+                      className={style.patreonLink}
                       href="https://www.patreon.com/bePatron?u=28088162"
                       data-patreon-widget-type="become-patron-button"
                       rel="noopener noreferrer"
                       target="_blank"
                     >
-                      Become a Patron!
+                      <svg className={style.patreonIcon} viewBox="0 0 569 546" xmlns="http://www.w3.org/2000/svg">
+                        <g>
+                          <circle cx="362.589996" cy="204.589996" data-fill="1" id="Oval" r="204.589996"></circle>
+                          <rect data-fill="2" height="545.799988" id="Rectangle" width="100" x="0" y="0"></rect>
+                        </g>
+                      </svg>
+                      <span className={style.patreonText}>
+                        Become a Patron!
+                      </span>
                     </a>
                   </Grid>
                 </Paper>
