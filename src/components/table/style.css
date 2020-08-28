@@ -1,0 +1,11 @@
+.pastDate {
+  text-decoration: line-through;
+}
+
+.icon {
+  margin-right: 4px;
+}
+
+.ticketsLink {
+  margin-left: 8px;
+}

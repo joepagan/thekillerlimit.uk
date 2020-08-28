@@ -1,4 +1,3 @@
-import React from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
@@ -10,12 +9,15 @@ import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
 import TableSortLabel from '@material-ui/core/TableSortLabel';
 import Paper from '@material-ui/core/Paper';
-import EventIcon from '@material-ui/icons/Event';
 import TheatersIcon from '@material-ui/icons/Theaters';
-import MusicNoteIcon from '@material-ui/icons/MusicNote';
-import MapIcon from '@material-ui/icons/Map';
-import { Link, IconButton } from '@material-ui/core';
+import EventAvailableIcon from '@material-ui/icons/EventAvailable';
+import { Link, Button } from '@material-ui/core';
 import { useState } from 'preact/hooks';
+import Dropdown from './../dropdown';
+import format from 'date-fns/format';
+import style from './style';
+import { vCalendarUrl, googleCalendarUrl, vCalHandler } from '../../utils/calendar';
+import { googleMapsUrl, appleMapsUrl } from '../../utils/maps';
 
 function descendingComparator(a, b, orderBy) {
   if (b[orderBy] < a[orderBy]) {
@@ -47,8 +49,8 @@ const headCells = [
   { id: 'date', numeric: false, disablePadding: false, label: 'Date' },
   { id: 'venue', numeric: false, disablePadding: false, label: 'Venue' },
   { id: 'location', numeric: false, disablePadding: false, label: 'Location' },
-  { id: 'calendar', numeric: true, disablePadding: false, label: 'Add to Calendar' },
-  { id: 'tickets', numeric: true, disablePadding: false, label: 'Buy Tickets' },
+  { id: 'calendar', numeric: true, disablePadding: false, label: null },
+  { id: 'tickets', numeric: true, disablePadding: false, label: null },
 ];
 
 function EnhancedTableHead(props) {
@@ -63,7 +65,7 @@ function EnhancedTableHead(props) {
         {headCells.map((headCell) => (
           <TableCell
             key={headCell.id}
-            align={headCell.numeric ? 'right' : 'left'}
+            align={headCell.numeric ? 'center' : 'left'}
             padding={headCell.disablePadding ? 'none' : 'default'}
             sortDirection={orderBy === headCell.id ? order : false}
           >
@@ -180,7 +182,6 @@ export default function EnhancedTable(props) {
   const isSelected = (name) => selected.indexOf(name) !== -1;
 
   const emptyRows = rowsPerPage - Math.min(rowsPerPage, props.rows.length - page * rowsPerPage);
-
   return (
     <div className={classes.root}>
       <Paper className={classes.paper}>
@@ -203,9 +204,8 @@ export default function EnhancedTable(props) {
             <TableBody>
               {stableSort(props.rows, getComparator(order, orderBy))
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                .map((row, index) => {
+                .map((row) => {
                   const isItemSelected = isSelected(row.name);
-                  const labelId = `enhanced-table-checkbox-${index}`;
 
                   return (
                     <TableRow
@@ -217,69 +217,81 @@ export default function EnhancedTable(props) {
                       key={row.name}
                       selected={isItemSelected}
                     >
-                      <TableCell>{row.date}</TableCell>
-                      <TableCell>
-                        <Link
-                          href={row.venueUrl}
-                          rel="noopener noreferrer"
-                          target="_blank"
-                        >
-                          <IconButton
-                            edge="start"
-                            color="primary"
-                            aria-label="menu"
-                          >
-                            <MusicNoteIcon />
-                          </IconButton>
-                          {row.venue}
-                        </Link>
+                      <TableCell className={props.type === 'past' ? style.pastDate : ''}>{`${format(new Date(row.datetime), 'EEE, do MMM, yyyy')}`}</TableCell>
+                      <TableCell align="left">
+                        <Dropdown iconClass={style.icon} colName='venue' buttonText={row.venue} menuItems={[
+                          {
+                            text: 'Google Maps',
+                            url: googleMapsUrl(`${row.venue}, ${row.city}, ${row.country}`),
+                            target: '_blank',
+                          },
+                          {
+                            text: 'Apple Maps',
+                            url: appleMapsUrl(row.latitude, row.longitude),
+                          },
+                        ]} />
+                      </TableCell>
+                      <TableCell align="left">
+                        <Dropdown iconClass={style.icon} colName='location' buttonText={`${row.city}, ${row.country}`} menuItems={[
+                          {
+                            text: 'Google Maps',
+                            url: googleMapsUrl(`${row.venue}, ${row.city}, ${row.country}`),
+                            target: '_blank',
+                          },
+                          {
+                            text: 'Apple Maps',
+                            url: appleMapsUrl(row.latitude, row.longitude),
+                          },
+                        ]} />
                       </TableCell>
                       <TableCell>
-                        <Link
-                          href={row.locationUrl}
-                          rel="noopener noreferrer"
-                          target="_blank"
-                        >
-                          <IconButton
-                            edge="start"
-                            color="primary"
-                            aria-label="menu"
-                          >
-                            <MapIcon />
-                          </IconButton>
-                          {row.location}
-                        </Link>
+                        {props.type !== 'past' ?
+                          <Dropdown iconClass={style.icon} colName='calendar' buttonText="Add to Calendar" handler={vCalHandler} menuItems={[
+                            {
+                              text: 'Google',
+                              url: googleCalendarUrl(row),
+                              target: '_blank',
+                            },
+                            {
+                              text: 'Apple',
+                              url: vCalendarUrl(row),
+                            },
+                            {
+                              text: 'Outlook',
+                              url: vCalendarUrl(row),
+                            },
+                          ]} />
+                          : '-'
+                        }
                       </TableCell>
-                      <TableCell align="right">
-                        <Link href="#"
-                          rel="noopener noreferrer"
-                          target="_blank"
-                        >
-                          <IconButton
-                            edge="start"
-                            color="primary"
-                            aria-label="menu"
-                          >
-                            <EventIcon />
-                          </IconButton>
-                          Add to Calendar
-                        </Link>
-                      </TableCell>
-                      <TableCell align="right">
+                      <TableCell>
                         <Link
                           href={row.url}
                           rel="noopener noreferrer"
                           target="_blank"
                         >
-                          <IconButton
-                            edge="start"
-                            color="primary"
-                            aria-label="menu"
-                          >
-                            <TheatersIcon />
-                          </IconButton>
-                          Tickets
+                          <Button>
+                            <EventAvailableIcon className={style.icon} color="primary" />
+                            {props.type !== 'past' ?
+                              'RSVP'
+                              : 'I Was There'
+                            }
+                          </Button>
                         </Link>
+                        {row.ticketsUrl ?
+                          <Link
+                            href={row.ticketsUrl}
+                            rel="noopener noreferrer"
+                            target="_blank"
+                            className={style.ticketsLink}
+                          >
+                            <Button>
+                              <TheatersIcon color="primary" className={style.icon} />
+                              Tickets
+                            </Button>
+                          </Link>
+                          : null
+                        }
                       </TableCell>
                     </TableRow>
                   );

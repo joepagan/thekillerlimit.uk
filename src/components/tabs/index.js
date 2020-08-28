@@ -51,38 +51,18 @@ const useStyles = makeStyles((theme) => ({
 
 const getEvents = async (endpoint) => {
   return fetch(endpoint)
-  .then((response) => response.json())
-  .then((data) => {
-      let rows = [];
-      const events = data.resultsPage.results.event;
-      if (typeof events !== 'undefined') {
-        events.map((event) => {
-          const parsedEvent = {
-            name: event.displayName,
-            date: event.start.date,
-            venue: event.venue.displayName,
-            venueUrl: event.venue.uri,
-            location: event.location.city,
-            locationUrl: `https://maps.google.com?q=${event.venue.displayName}, ${event.location.city}`,
-            url: event.uri,
-          }
-          rows = [
-            ...rows,
-            parsedEvent,
-          ];
-        });
-      }
-      return rows;
-  });
+    .then((response) => response.json());
 }
 
 export default class SimpleTabs extends Component {
   async componentDidMount() {
-    let upcomingShows = await getEvents('https://api.songkick.com/api/3.0/artists/10108237/calendar.json?apikey=MyiA1cFNdmmmtz5n');
-    let pastShows = await getEvents('https://api.songkick.com/api/3.0/artists/10108237/gigography.json?apikey=MyiA1cFNdmmmtz5n');
+    let upcomingShows = await getEvents('https://nextjs.joepagan.vercel.app/api/bit');
+    let pastShows = await getEvents('https://nextjs.joepagan.vercel.app/api/bit?date=past');
+    const activeTab = upcomingShows.length !== 0 ? 0 : 1;
     this.setState({
       upcomingShows,
       pastShows,
+      activeTab,
     });
   }
   render({}, {
@@ -90,28 +70,28 @@ export default class SimpleTabs extends Component {
     pastShows=[],
   }) {
     const classes = useStyles();
-    const [value, setValue] = useState(0);
-    setValue(upcomingShows.length === 0 ? 1 : 0);
     const handleChange = (event, newValue) => {
-      setValue(newValue);
+      this.setState({
+        activeTab: newValue,
+      });
     };
     return (
       <div className={classes.root}>
         <AppBar position="static">
-          <Tabs value={value} onChange={handleChange} aria-label="simple tabs example">
+          <Tabs value={this.state.activeTab} onChange={handleChange} aria-label="Switch between upcoming and past shows">
             <Tab label="Upcoming Shows" {...a11yProps(0)} />
             <Tab label="Past Shows" {...a11yProps(1)} />
           </Tabs>
         </AppBar>
-        <TabPanel value={value} index={0}>
+        <TabPanel value={this.state.activeTab} index={0}>
           {upcomingShows.length ?
             <Table rows={upcomingShows} />
             : 'No upcoming shows'
           }
         </TabPanel>
-        <TabPanel value={value} index={1}>
+        <TabPanel value={this.state.activeTab} index={1}>
           {pastShows ?
-            <Table rows={pastShows} />
+            <Table rows={pastShows} type="past" />
             : null }
         </TabPanel>
       </div>
