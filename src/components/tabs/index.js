@@ -55,6 +55,12 @@ const getEvents = async (endpoint) => {
 }
 
 export default class SimpleTabs extends Component {
+  constructor() {
+    super();
+    this.state = {
+      activeTab: 0,
+    };
+  }
   async componentDidMount() {
     let upcomingShows = await getEvents('https://nextjs.joepagan.vercel.app/api/bit');
     let pastShows = await getEvents('https://nextjs.joepagan.vercel.app/api/bit?date=past');
