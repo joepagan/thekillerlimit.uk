@@ -194,7 +194,7 @@ export default class App extends Component {
               "@context": "http://schema.org",
               "@type": "MusicGroup",
               "name": "${meta.name}",
-              "url": "${meta.url},
+              "url": "${meta.url}",
               "email": "thekillerlimit@gmail.com",
               "member": [
                 {
