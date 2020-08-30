@@ -250,7 +250,7 @@ export default class App extends Component {
                   },
                   "startDate": "2015",
                   "roleName": ["bass", "backing vocals"]
-                },
+                }
               ],
               "numberOfEmployees": "6",
               "sameAs": [
