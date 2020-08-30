@@ -8,6 +8,7 @@ import { h, Component } from 'preact';
 import { Router } from 'preact-router';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import { useState } from 'preact/hooks';
+import Helmet from "preact-helmet";
 
 import Header from './header';
 import Footer from './footer';
@@ -128,6 +129,26 @@ const icons = [
   },
 ];
 
+const meta = {
+  name: 'The Killer Limit',
+  title: 'The Killer Limit - A Rock Rap Hip hop group from Leeds, UK',
+  description: 'A dynamic & collaborative writing style has helped The Killer Limit achieve their unique sound which includes: interesting rhythms, unusual song structures, and, a sprinkling of hip hop.',
+  url: 'https://thekillerlimit.uk',
+  logoObject: `{
+    "@type":"ImageObject",
+    "url": "https://thekillerlimit.uk/assets/img/hero-bg.jpg",
+    "width": "1334",
+    "height": "2000"
+  }`,
+  imageObject: `{
+    "@type":"ImageObject",
+    "url": "https://thekillerlimit.uk/assets/img/hero-bg.jpg",
+    "width": "1334",
+    "height": "2000"
+  }`,
+  image: `https://thekillerlimit.uk/assets/img/hero-bg.jpg`,
+}
+
 export default class App extends Component {
 
 	/** Gets fired when the route changes.
@@ -144,6 +165,118 @@ export default class App extends Component {
     });
 		return (
 			<div id="app">
+        <Helmet
+          htmlAttributes={{lang: "en-GB", amp: undefined}} // amp takes no value
+          title={meta.title}
+          titleTemplate=""
+          defaultTitle="The Killer Limit"
+          titleAttributes={{itemprop: "name", lang: "en-GB"}}
+          meta={[
+            {name: "description", content: meta.description},
+            {property: "og:title", content: meta.title},
+            {property: "og:description", content: meta.description},
+            {property: "og:image", content: meta.image},
+            {property: "og:type", content: "website"},
+            {property: "og:site_name", content: meta.name},
+            {property: "og:url", content: meta.url},
+            {property: "twitter:card", content: 'summary_large_image'},
+            {property: "twitter:title", content: meta.title},
+            {property: "twitter:description", content: meta.description},
+            {property: "twitter:image", content: meta.image},
+            {property: "twitter:site", content: '@thekillerlimit'},
+            {property: "twitter:creator", content: '@thekillerlimit'},
+            {property: "twitter:url", content: meta.url},
+          ]}
+          script={[
+            {type: "application/ld+json", innerHTML: meta.logoObject},
+            {type: "application/ld+json", innerHTML: meta.imageObject},
+            {type: "application/ld+json", innerHTML: `{
+              "@context": "http://schema.org",
+              "@type": "MusicGroup",
+              "name": "${meta.name}",
+              "url": "${meta.url},
+              "email": "thekillerlimit@gmail.com",
+              "member": [
+                {
+                  "@type": "OrganizationRole",
+                  "member": {
+                    "@type": "Person",
+                    "name": "Tiph"
+                  },
+                  "startDate": "2015",
+                  "roleName": ["rapping", "vocals"]
+                },
+                {
+                  "@type": "OrganizationRole",
+                  "member": {
+                    "@type": "Person",
+                    "name": "CJ"
+                  },
+                  "startDate": "2020",
+                  "roleName": ["lead vocals"]
+                },
+                {
+                  "@type": "OrganizationRole",
+                  "member": {
+                    "@type": "Person",
+                    "name": "Mark Rinder"
+                  },
+                  "startDate": "2015",
+                  "roleName": ["guitar", "backing vocals"]
+                },
+                {
+                  "@type": "OrganizationRole",
+                  "member": {
+                    "@type": "Person",
+                    "name": "Liam Sullivan"
+                  },
+                  "startDate": "2015",
+                  "roleName": ["drums"]
+                },
+                {
+                  "@type": "OrganizationRole",
+                  "member": {
+                    "@type": "Person",
+                    "name": "Matthew Hickey"
+                  },
+                  "startDate": "2015",
+                  "roleName": ["synthesizers", "piano"]
+                },
+                {
+                  "@type": "OrganizationRole",
+                  "member": {
+                    "@type": "Person",
+                    "name": "Joe Pagan"
+                  },
+                  "startDate": "2015",
+                  "roleName": ["bass", "backing vocals"]
+                },
+              ],
+              "numberOfEmployees": "6",
+              "sameAs": [
+                ${icons.map((icon) => {
+                  if(icon.id !== 'presspack') {
+                    return `"${icon.href}"`;
+                  }
+                })}
+              ],
+              "foundingLocation": {
+                "@context": "http://schema.org/",
+                "@type": "Place",
+                "address": "Leeds, GB",
+              },
+              "image": imageObject,
+              "logo": logoImageObject,
+              "genre": [
+                "Rap",
+                "Rock",
+                "Hip Hop",
+                "Rap Rock",
+              ],
+              "areaServed": "GB",
+            }`}
+          ]}
+      />
         <ThemeProvider theme={theme}>
           <Header nav={state.nav} icons={icons} />
           <Router onChange={this.handleRoute}>
