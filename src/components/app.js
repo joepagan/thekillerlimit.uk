@@ -264,8 +264,8 @@ export default class App extends Component {
                 "@type": "Place",
                 "address": "Leeds, GB"
               },
-              "image": imageObject,
-              "logo": logoImageObject,
+              "image": ${meta.imageObject},
+              "logo": ${meta.logoObject},
               "genre": [
                 "Rap",
                 "Rock",
