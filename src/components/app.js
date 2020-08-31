@@ -129,6 +129,10 @@ const icons = [
   },
 ];
 
+const sameAs = icons.filter(icon => icon.id !== 'presspack').map((icon) => {
+  return icon.href;
+});
+
 const meta = {
   name: 'The Killer Limit',
   title: 'The Killer Limit - A Rock Rap Hip hop group from Leeds, UK',
@@ -147,6 +151,7 @@ const meta = {
     "height": "2000"
   }`,
   image: `https://thekillerlimit.uk/assets/img/hero-bg.jpg`,
+  sameAs: JSON.stringify(sameAs),
 }
 
 export default class App extends Component {
@@ -253,13 +258,7 @@ export default class App extends Component {
                 }
               ],
               "numberOfEmployees": "6",
-              "sameAs": [
-                ${icons.map((icon) => {
-                  if(icon.id !== 'presspack') {
-                    return `"${icon.href}"`;
-                  }
-                })}
-              ],
+              "sameAs": ${meta.sameAs},
               "foundingLocation": {
                 "@context": "http://schema.org/",
                 "@type": "Place",
