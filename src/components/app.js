@@ -95,37 +95,37 @@ const icons = [
   {
     id: 'twitter',
     title: 'Follow us on Twitter',
-    href: 'https://twitter.com/killermantisuk?ref=killermantis-website',
+    href: 'https://twitter.com/killermantisuk',
   },
   {
     id: 'facebook',
     title: 'Like us on Facebook',
-    href: 'https://www.facebook.com/killermantismusic?ref=killermantis-website',
+    href: 'https://www.facebook.com/killermantismusic',
   },
   {
     id: 'instagram',
     title: 'Follow us on Instagram',
-    href: 'https://www.instagram.com/killermantismusic?ref=killermantis-website',
+    href: 'https://www.instagram.com/killermantismusic',
   },
   {
     id: 'soundcloud',
     title: 'Follow us on SoundCloud',
-    href: 'https://www.soundcloud.com/killermantis?ref=killermantis-website',
+    href: 'https://www.soundcloud.com/killermantis',
   },
   {
     id: 'youtube',
     title: 'Subscribe to us on YouTube',
-    href: 'https://www.youtube.com/channel/UCjXeqCAvBsTNb2FlemGRhKQ?ref=killermantis-website',
+    href: 'https://www.youtube.com/channel/UCjXeqCAvBsTNb2FlemGRhKQ',
   },
   {
     id: 'reverbnation',
     title: 'Follow us on Reverbnation',
-    href: 'https://www.reverbnation.com/killermantis?ref=killermantis-website',
+    href: 'https://www.reverbnation.com/killermantis',
   },
   {
     id: 'patreon',
     title: 'Support us on Patreon',
-    href: 'https://www.patreon.com/bePatron?u=28088162&redirect_uri=https://killermantis.com&utm_medium=headerLink',
+    href: 'https://www.patreon.com/bePatron?u=28088162&redirect_uri=https://thekillerlimit.com',
   },
 ];
 
