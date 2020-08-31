@@ -262,7 +262,7 @@ export default class App extends Component {
               "foundingLocation": {
                 "@context": "http://schema.org/",
                 "@type": "Place",
-                "address": "Leeds, GB",
+                "address": "Leeds, GB"
               },
               "image": imageObject,
               "logo": logoImageObject,
@@ -270,9 +270,9 @@ export default class App extends Component {
                 "Rap",
                 "Rock",
                 "Hip Hop",
-                "Rap Rock",
+                "Rap Rock"
               ],
-              "areaServed": "GB",
+              "areaServed": "GB"
             }`}
           ]}
       />
