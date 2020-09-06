@@ -4,7 +4,7 @@ if (process.env.NODE_ENV==='development') {
   // to exist at the top of a file.
   require("preact/debug");
 }
-import { h, Component } from 'preact';
+import { Component } from 'preact';
 import { Router } from 'preact-router';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import { useState } from 'preact/hooks';
@@ -16,6 +16,7 @@ import Socials from './socials';
 
 // Code-splitting is automated for routes
 import Home from '../routes/home';
+import Cookies from '../routes/cookies';
 
 const theme = createMuiTheme({
   palette: {
@@ -280,6 +281,7 @@ export default class App extends Component {
           <Header nav={state.nav} icons={icons} />
           <Router onChange={this.handleRoute}>
             <Home path="/" state={state} setState={setState} />
+            <Cookies path="/cookies" />
           </Router>
           <Socials icons={icons} />
           <Footer />

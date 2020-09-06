@@ -1,5 +1,3 @@
-import { h } from 'preact';
-
 import style from './style.css';
 import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';

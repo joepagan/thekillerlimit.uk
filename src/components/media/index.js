@@ -1,5 +1,5 @@
 import style from './style';
-import { h, Component } from 'preact';
+import { Component } from 'preact';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';

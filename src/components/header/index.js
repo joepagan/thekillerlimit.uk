@@ -1,5 +1,5 @@
 import style from './style';
-import { h, Fragment, Component } from 'preact';
+import { Fragment, Component } from 'preact';
 import { useState } from 'preact/hooks';
 
 import { makeStyles } from '@material-ui/core/styles';
