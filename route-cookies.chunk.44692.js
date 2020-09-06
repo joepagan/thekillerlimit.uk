@@ -1,0 +1,2 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[2],{"8MQT":function(n,t,c){"use strict";(function(n){t.a=function(){return n("div",null,n("script",{id:"CookieDeclaration",src:"https://consent.cookiebot.com/6b593094-6dab-47a6-8a5a-74099df33b9b/cd.js",type:"text/javascript",async:!0}))}}).call(this,c("hosL").h)},RkxV:function(n,t,c){"use strict";c.r(t),function(n){var i=c("8MQT");t.default=function(){return n("div",null,n(i.a,null))}}.call(this,c("hosL").h)}}]);
+//# sourceMappingURL=route-cookies.chunk.44692.js.map
