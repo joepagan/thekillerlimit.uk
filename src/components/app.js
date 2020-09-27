@@ -7,7 +7,7 @@ if (process.env.NODE_ENV==='development') {
 import { Component } from 'preact';
 import { Router } from 'preact-router';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
-import { useState } from 'preact/hooks';
+// import { useState } from 'preact/hooks';
 import Helmet from "preact-helmet";
 
 import Header from './header';
@@ -134,6 +134,67 @@ const sameAs = icons.filter(icon => icon.id !== 'presspack').map((icon) => {
   return icon.href;
 });
 
+// const getEvents = async (endpoint) => {
+//   return fetch(endpoint)
+//     .then((response) => response.json());
+// }
+const getEndDate = (datetime) => {
+  const date = new Date(datetime);
+  date.setHours(date.getHours()+5);
+  return date;
+}
+
+function mapEvents(events) {
+  return JSON.stringify(
+    events.map(event => {
+      return {
+        "@context": "https://schema.org",
+        "@type": "Event",
+        name: `The Killer Limit at ${event.venue}, ${event.city}, ${event.country}`,
+        startDate: event.datetime,
+        endDate: getEndDate(event.datetime).toISOString(),
+        eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
+        eventStatus: "https://schema.org/EventScheduled",
+        location: {
+          "@type": "Place",
+          name: event.venue,
+          address: {
+            "@type": "PostalAddress",
+            streetAddress: "100 West Snickerpark Dr",
+            addressLocality: event.city,
+            postalCode: "19019",
+            addressRegion: "PA",
+            addressCountry: event.country
+          }
+        },
+        // image: [
+        //   "https://example.com/photos/1x1/photo.jpg",
+        //   "https://example.com/photos/4x3/photo.jpg",
+        //   "https://example.com/photos/16x9/photo.jpg"
+        // ],
+        description: `The Killer Limit is coming to ${event.city} in a can’t miss performance.`,
+        offers: {
+          "@type": "Offer",
+          url: "https://www.example.com/event_offer/12345_201803180430",
+          price: "30",
+          priceCurrency: "USD",
+          availability: "https://schema.org/InStock",
+          validFrom: "2024-05-21T12:00",
+        },
+        performer: {
+          "@type": "PerformingGroup",
+          name: "The Killer Limit",
+        },
+        organizer: {
+          "@type": "Organization",
+          name: "The Killer Limit",
+          url: "https://thekillerlimit.uk",
+        }
+      };
+    })
+  );
+}
+
 const meta = {
   name: 'The Killer Limit',
   title: 'The Killer Limit - A Rock Rap Hip hop group from Leeds, UK',
@@ -156,19 +217,39 @@ const meta = {
 }
 
 export default class App extends Component {
-
+  constructor() {
+    super();
+    this.state = {
+      nav: false,
+      upcomingShows: [],
+      pastShows: [],
+    };
+  }
 	/** Gets fired when the route changes.
 	 *	@param {Object} event		"change" event from [preact-router](http://git.io/preact-router)
 	 *	@param {string} event.url	The newly routed URL
 	 */
 	handleRoute = e => {
 		this.currentUrl = e.url;
-	};
+  };
+  componentDidMount() {
+    fetch('https://nextjs.joepagan.vercel.app/api/bit')
+      .then((response) => response.json())
+      .then((res) => {
+        this.setState({
+          upcomingShows: res,
+        });
+      });
+    fetch('https://nextjs.joepagan.vercel.app/api/bit?date=past')
+      .then((response) => response.json())
+      .then((res) => {
+        this.setState({
+          pastShows: res,
+        });
+      });
+  }
 
-	render() {
-    const [state, setState] = useState({
-      nav: false,
-    });
+	render(props, state) {
 		return (
 			<div id="app">
         <Helmet
@@ -196,6 +277,7 @@ export default class App extends Component {
           script={[
             {type: "application/ld+json", innerHTML: meta.logoObject},
             {type: "application/ld+json", innerHTML: meta.imageObject},
+            {type: "application/ld+json", innerHTML: mapEvents(state.pastShows)},
             {type: "application/ld+json", innerHTML: `{
               "@context": "http://schema.org",
               "@type": "MusicGroup",
@@ -280,7 +362,7 @@ export default class App extends Component {
         <ThemeProvider theme={theme}>
           <Header nav={state.nav} icons={icons} />
           <Router onChange={this.handleRoute}>
-            <Home path="/" state={state} setState={setState} />
+            <Home path="/" state={state} />
             <Cookies path="/cookies" />
           </Router>
           <Socials icons={icons} />

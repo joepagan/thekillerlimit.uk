@@ -6,14 +6,14 @@ import Typography from '@material-ui/core/Typography';
 import style from './style';
 import Tabs from './../tabs';
 
-const Shows = () => (
+const Shows = (props) => (
   <div id="shows">
     <Container maxWidth="lg">
       <Grid container>
         <Grid item xs={12}>
           <Paper className={style.paper} elevation={3} square align="center">
             <Typography variant="h2" component="h2" align="center" gutterBottom>Shows</Typography>
-            <Tabs />
+            <Tabs state={props.state} />
           </Paper>
         </Grid>
       </Grid>

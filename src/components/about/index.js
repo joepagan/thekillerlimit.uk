@@ -32,7 +32,7 @@ export default class About extends Component {
       })
       .onStepEnter((res) => {
         if (res.direction === 'down') {
-          {this.props.setState({
+          {this.setState({
             ...this.props.state,
             nav: true,
           })}
@@ -40,7 +40,7 @@ export default class About extends Component {
       })
       .onStepExit((res) => {
         if (res.direction !== 'down') {
-          {this.props.setState({
+          {this.setState({
             nav: false,
           })}
         }

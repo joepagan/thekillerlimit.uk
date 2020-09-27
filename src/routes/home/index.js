@@ -7,10 +7,10 @@ import Shows from './../../components/shows';
 const Home = ({children, ...props}) => (
   <div>
     <Hero />
-    <About state={props.state} setState={props.setState} />
+    <About state={props.state} />
     <Media />
     <Profiles />
-    <Shows />
+    <Shows state={props.state} />
   </div>
 );
 

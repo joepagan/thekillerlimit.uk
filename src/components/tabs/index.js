@@ -7,6 +7,7 @@ import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import Table from './../table';
+import { useState } from 'preact/hooks';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -48,32 +49,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const getEvents = async (endpoint) => {
-  return fetch(endpoint)
-    .then((response) => response.json());
-}
-
 export default class SimpleTabs extends Component {
-  constructor() {
-    super();
-    this.state = {
-      activeTab: 0,
-    };
-  }
-  async componentDidMount() {
-    let upcomingShows = await getEvents('https://nextjs.joepagan.vercel.app/api/bit');
-    let pastShows = await getEvents('https://nextjs.joepagan.vercel.app/api/bit?date=past');
-    const activeTab = upcomingShows.length !== 0 ? 0 : 1;
-    this.setState({
-      upcomingShows,
-      pastShows,
-      activeTab,
-    });
-  }
-  render({}, {
-    upcomingShows=[],
-    pastShows=[],
-  }) {
+  state = {
+    activeTab: this.props.state.upcomingShows.length !== 0 ? 0 : 1,
+  };
+  render(props, state) {
     const classes = useStyles();
     const handleChange = (event, newValue) => {
       this.setState({
@@ -89,14 +69,14 @@ export default class SimpleTabs extends Component {
           </Tabs>
         </AppBar>
         <TabPanel value={this.state.activeTab} index={0}>
-          {upcomingShows.length ?
-            <Table rows={upcomingShows} />
+          {props.state.upcomingShows.length ?
+            <Table rows={props.upcomingShows} />
             : 'No upcoming shows'
           }
         </TabPanel>
         <TabPanel value={this.state.activeTab} index={1}>
-          {pastShows ?
-            <Table rows={pastShows} type="past" />
+          {props.state.pastShows ?
+            <Table rows={props.state.pastShows} type="past" />
             : null }
         </TabPanel>
       </div>
