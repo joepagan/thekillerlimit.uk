@@ -24,6 +24,9 @@ import icons from './../data/icons';
 // Meta
 // import {helmetMeta, helmetScript} from './../data/meta';
 
+import CookieBot from 'react-cookiebot';
+const domainGroupId = '6b593094-6dab-47a6-8a5a-74099df33b9b';
+
 export default class App extends Component {
   state = {
     nav: false,
@@ -57,6 +60,7 @@ export default class App extends Component {
 	render(props, state) {
 		return (
 			<div id="app">
+        <CookieBot domainGroupId={domainGroupId} />
         <Helmet
           htmlAttributes={{lang: "en-GB", amp: undefined}} // amp takes no value
           // title={meta.title}
