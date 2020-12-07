@@ -1,5 +1,4 @@
 import style from './style';
-import { Component } from 'preact';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
@@ -14,7 +13,7 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-export default function Media(props) {
+export default function Media() {
   const classes = useStyles();
   return (
     <div id="media" className={classes.section}>
