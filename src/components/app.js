@@ -24,8 +24,6 @@ import icons from './../data/icons';
 // Meta
 // import {helmetMeta, helmetScript} from './../data/meta';
 
-import CookieBot from './cookieBot'
-
 export default class App extends Component {
   state = {
     nav: false,
@@ -59,7 +57,6 @@ export default class App extends Component {
 	render(props, state) {
 		return (
 			<div id="app">
-        <CookieBot />
         <Helmet
           htmlAttributes={{lang: "en-GB", amp: undefined}} // amp takes no value
           // title={meta.title}
