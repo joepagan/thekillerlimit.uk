@@ -81,7 +81,7 @@ export default class About extends Component {
                     </Typography>
                     <a
                       className={style.patreonLink}
-                      href="https://www.patreon.com/bePatron?u=28088162"
+                      href="https://www.patreon.com/thekillerlimit"
                       data-patreon-widget-type="become-patron-button"
                       rel="noopener noreferrer"
                       target="_blank"
