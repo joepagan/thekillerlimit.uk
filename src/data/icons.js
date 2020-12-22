@@ -8,22 +8,22 @@ const icons = [
   {
     id: 'twitter',
     title: 'Follow us on Twitter',
-    href: 'https://twitter.com/killermantisuk',
+    href: 'https://twitter.com/thekillerlimit',
   },
   {
     id: 'facebook',
     title: 'Like us on Facebook',
-    href: 'https://www.facebook.com/killermantismusic',
+    href: 'https://www.facebook.com/thekillerlimit',
   },
   {
     id: 'instagram',
     title: 'Follow us on Instagram',
-    href: 'https://www.instagram.com/killermantismusic',
+    href: 'https://www.instagram.com/thekillerlimit/',
   },
   {
     id: 'soundcloud',
     title: 'Follow us on SoundCloud',
-    href: 'https://www.soundcloud.com/killermantis',
+    href: 'https://soundcloud.com/thekillerlimit',
   },
   {
     id: 'youtube',
@@ -33,12 +33,12 @@ const icons = [
   {
     id: 'reverbnation',
     title: 'Follow us on Reverbnation',
-    href: 'https://www.reverbnation.com/killermantis',
+    href: 'https://www.reverbnation.com/thekillerlimit',
   },
   {
     id: 'patreon',
     title: 'Support us on Patreon',
-    href: 'https://www.patreon.com/bePatron?u=28088162&redirect_uri=https://thekillerlimit.com',
+    href: 'https://www.patreon.com/thekillerlimit',
   },
 ];
 
