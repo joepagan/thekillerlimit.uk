@@ -29,7 +29,7 @@ export default function Media() {
                       className={style.sc}
                       title="SoundCloud Player, The Killer Limit"
                       loading="lazy"
-                      src=''
+                      src=""
                       data-src='https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/946241146&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true">'
                       data-cookieconsent="marketing"
                     />
@@ -43,6 +43,7 @@ export default function Media() {
                     <ResponsiveEmbed
                       loading="lazy"
                       title="YouTube Player, The Killer Limit - Black Shark"
+                      src=""
                       data-src="https://www.youtube.com/embed/iFDZ3QDq8Sc"
                       data-cookieconsent="marketing"
                       allowFullScreen
